@@ -29,6 +29,7 @@ in
   beanstalkd = handleTest ./beanstalkd.nix {};
   beegfs = handleTestOn ["x86_64-linux"] ./beegfs.nix {}; # beegfs is unsupported on aarch64
   bind = handleTest ./bind.nix {};
+  bitcoin = handleTest ./bitcoin.nix {};
   bittorrent = handleTest ./bittorrent.nix {};
   #blivet = handleTest ./blivet.nix {};   # broken since 2017-07024
   boot = handleTestOn ["x86_64-linux"] ./boot.nix {}; # syslinux is unsupported on aarch64
