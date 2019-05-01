@@ -111,6 +111,7 @@ in
   installer = handleTest ./installer.nix {};
   ipv6 = handleTest ./ipv6.nix {};
   jackett = handleTest ./jackett.nix {};
+  jellyfin = handleTest ./jellyfin.nix {};
   jenkins = handleTest ./jenkins.nix {};
   #kafka = handleTest ./kafka.nix {}; # broken since openjdk: 8u181 -> 8u192
   kerberos = handleTest ./kerberos/default.nix {};
