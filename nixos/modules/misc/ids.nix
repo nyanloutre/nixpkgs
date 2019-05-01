@@ -265,7 +265,7 @@
       syncthing = 237;
       caddy = 239;
       taskd = 240;
-      factorio = 241;
+      # factorio = 241; # DynamicUser = true
       emby = 242;
       graylog = 243;
       sniproxy = 244;
@@ -566,7 +566,7 @@
       syncthing = 237;
       caddy = 239;
       taskd = 240;
-      factorio = 241;
+      # factorio = 241; # unused
       emby = 242;
       sniproxy = 244;
       nzbget = 245;
