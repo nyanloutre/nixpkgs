@@ -22826,6 +22826,8 @@ in
 
   apmplanner2 = libsForQt59.callPackage ../applications/science/robotics/apmplanner2 { };
 
+  betaflight-blackbox-explorer = callPackage ../applications/science/robotics/betaflight-blackbox-explorer { };
+
   ### MISC
 
   acpilight = callPackage ../misc/acpilight { };
