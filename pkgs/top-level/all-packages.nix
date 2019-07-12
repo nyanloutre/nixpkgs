@@ -22125,7 +22125,7 @@ in
 
   minecraft-server = callPackage ../games/minecraft-server { };
 
-  minecraft-overviewer = python2Packages.callPackage ../games/minecraft-overviewer { };
+  minecraft-overviewer = python3Packages.callPackage ../games/minecraft-overviewer { };
 
   moon-buggy = callPackage ../games/moon-buggy {};
 
