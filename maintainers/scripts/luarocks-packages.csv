@@ -5,7 +5,6 @@ basexx,,,,,
 binaryheap,,,,,vcunat
 bit32,,,,lua5_1,lblasc
 busted,,,,,
-cjson,lua-cjson,,,,
 compat53,,,,,vcunat
 coxpcall,,,1.17.0-1,,
 cqueues,,,,,vcunat
@@ -15,6 +14,7 @@ dkjson,,,,,
 fifo,,,,,
 http,,,,,vcunat
 inspect,,,,,
+lbase64,,,,,
 ldoc,,,,,
 lgi,,,,,
 lpeg,,,,,vyp
@@ -25,6 +25,8 @@ lrexlib-gnu,,,,,
 lrexlib-pcre,,,,,vyp
 lrexlib-posix,,,,,
 ltermbox,,,,,
+luajwt,,,,,
+lua-cjson,,,,,
 lua-cmsgpack,,,,,
 lua-iconv,,,,,
 lua-lsp,,http://luarocks.org/dev,,,
@@ -35,6 +37,7 @@ lua-zlib,,,,,koral
 lua_cliargs,,,,,
 luabitop,,,,,
 luacheck,,,,,
+luacrypto,,,,,
 luadbi,,,,,
 luadbi-mysql,,,,,
 luadbi-postgresql,,,,,

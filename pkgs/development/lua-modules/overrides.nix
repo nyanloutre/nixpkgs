@@ -137,6 +137,13 @@ with super;
     disabled = luaOlder "5.1" || luaAtLeast "5.4";
   });
 
+  luacrypto = super.luacrypto.override({
+    externalDeps = [
+      # { name = "CRYPTO"; dep = pkgs.openssl; }
+      { name = "OPENSSL"; dep = pkgs.openssl; }
+    ];
+  });
+
   luadbi-mysql = super.luadbi-mysql.override({
     extraVariables = ''
       -- Can't just be /include and /lib, unfortunately needs the trailing 'mysql'
