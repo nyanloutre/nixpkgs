@@ -25,17 +25,18 @@ import ./make-test.nix ({ lib, ...}:
     $machine2->succeed("bitcoind -regtest -daemon -addnode=machine1");
     $machine2->waitForOpenPort('18444');
 
-    $machine1->succeed("bitcoin-cli -regtest generate 101");
+    my $adress1 = $machine1->succeed("bitcoin-cli -regtest getnewaddress");
+    $machine1->succeed("bitcoin-cli -regtest generatetoaddress 101 $adress1");
 
     my $info1 = $machine1->succeed("bitcoin-cli -regtest getblockchaininfo");
     my $info2 = $machine2->succeed("bitcoin-cli -regtest getblockchaininfo");
     die if $info1 ne $info2;
 
-    my $adress = $machine2->succeed("bitcoin-cli -regtest getnewaddress");
-    chomp $adress;
+    my $adress2 = $machine2->succeed("bitcoin-cli -regtest getnewaddress");
+    chomp $adress2;
 
-    $machine1->succeed("bitcoin-cli -regtest sendtoaddress $adress 20");
-    $machine1->succeed("bitcoin-cli -regtest generate 10");
+    $machine1->succeed("bitcoin-cli -regtest sendtoaddress $adress2 20");
+    $machine1->succeed("bitcoin-cli -regtest generatetoaddress 10 $adress1");
     my $balance = $machine2->succeed("bitcoin-cli -regtest getbalance");
     die if $balance < 20;
   '';
