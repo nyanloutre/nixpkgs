@@ -6,7 +6,14 @@ let
   dataDir = "/var/lib/mautrix-telegram";
   cfg = config.services.mautrix-telegram;
   # TODO: switch to configGen.json once RFC42 is implemented
-  serviceSettings = pkgs.writeText "mautrix-telegram-settings.json" (builtins.toJSON cfg.settings);
+  # serviceSettings = pkgs.writeText "mautrix-telegram-settings.json" (builtins.toJSON cfg.settings);
+  serviceSettings = pkgs.runCommand "mautrix-telegram" {} ''
+    install -m644 ${pkgs.writeText "mautrix-telegram-settings.json" (builtins.toJSON cfg.settings)} $out
+    ${pkgs.buildPackages.mautrix-telegram}/bin/mautrix-telegram \
+      --generate-registration \
+      --base-config='${pkgs.mautrix-telegram}/example-config.yaml' \
+      --config="$out"
+  '';
 
 in {
   options = {
@@ -181,7 +188,7 @@ in {
         WorkingDirectory = pkgs.mautrix-telegram; # necessary for the database migration scripts to be found
 
         ExecStart = ''
-          ${pkgs.mautrix-telegram}/bin/mautrix-telegram --config='${serviceSettings}'
+          ${pkgs.mautrix-telegram}/bin/mautrix-telegram --config='${serviceSettings}' --base-config=""
         '';
       };
     };
