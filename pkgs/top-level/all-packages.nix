@@ -3305,7 +3305,9 @@ in
     hdf4 = null;
   };
 
-  haproxy = callPackage ../tools/networking/haproxy { };
+  haproxy = callPackage ../tools/networking/haproxy {
+    openssl = openssl_1_1;
+  };
 
   haveged = callPackage ../tools/security/haveged { };
 
