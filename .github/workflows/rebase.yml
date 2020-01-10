@@ -2,7 +2,7 @@ name: Rebase on upstream
 
 on:
   schedule:
-    - cron: '* * * * *'
+    - cron: '0 0 * * *'
 
 jobs:
   nixos-19_09:
