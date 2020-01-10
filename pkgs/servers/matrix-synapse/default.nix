@@ -1,5 +1,5 @@
 { lib, stdenv, python3, openssl
-, enableSystemd ? stdenv.isLinux
+, enableSystemd ? stdenv.isLinux, nixosTests
 }:
 
 with python3.pkgs;
@@ -23,11 +23,11 @@ let
 
 in buildPythonApplication rec {
   pname = "matrix-synapse";
-  version = "1.7.0";
+  version = "1.7.3";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "1z7q34yazjb3glzhm0si0pzif32gnp03bmd490gckkl30rklyxsp";
+    sha256 = "1vpwf6jqwb66mq31lk5f0wzfsqa2l65rd7b1zqjbhvmz0js8kz5f";
   };
 
   patches = [
@@ -77,6 +77,8 @@ in buildPythonApplication rec {
   checkInputs = [ mock parameterized openssl ];
 
   doCheck = !stdenv.isDarwin;
+
+  passthru.tests = { inherit (nixosTests) matrix-synapse; };
 
   checkPhase = ''
     PYTHONPATH=".:$PYTHONPATH" ${python3.interpreter} -m twisted.trial tests

@@ -8,31 +8,31 @@
 , libiconv
 , AppKit
 , Security
-, withAllFeatures ? true
+, withStableFeatures ? true
 }:
 
 rustPlatform.buildRustPackage rec {
   pname = "nushell";
-  version = "0.6.1";
+  version = "0.7.1";
 
   src = fetchFromGitHub {
     owner = pname;
     repo = pname;
-    rev = version;
-    sha256 = "0fdi5c9l8ij2vqcxwi9203mh1qj3lcqsl4kl2rkshqj45hn4ab2a";
+    rev = "f9da7f7d58da3ead2aaba6a519c554d1b199c158"; # 0.7.1 on crates.io
+    sha256 = "0k662wq2m3xfnzkkrsiv5h2m9y3l44fr3gab933ggrdgj2xydqnh";
   };
 
-  cargoSha256 = "11cr88jmy34lzjka7agzfvm13hvg66ksa735rzcdx7lcxha538f3";
+  cargoSha256 = "0bdxlbl33kilp9ai40dvdzlx9vcl8r21br82r5ljs2pg521jd66p";
 
   nativeBuildInputs = [ pkg-config ]
-    ++ stdenv.lib.optionals (withAllFeatures && stdenv.isLinux) [ python3 ];
+    ++ stdenv.lib.optionals (withStableFeatures && stdenv.isLinux) [ python3 ];
 
   buildInputs = stdenv.lib.optionals stdenv.isLinux [ openssl ]
     ++ stdenv.lib.optionals stdenv.isDarwin [ libiconv Security ]
-    ++ stdenv.lib.optionals (withAllFeatures && stdenv.isLinux) [ xorg.libX11 ]
-    ++ stdenv.lib.optionals (withAllFeatures && stdenv.isDarwin) [ AppKit ];
+    ++ stdenv.lib.optionals (withStableFeatures && stdenv.isLinux) [ xorg.libX11 ]
+    ++ stdenv.lib.optionals (withStableFeatures && stdenv.isDarwin) [ AppKit ];
 
-  cargoBuildFlags = stdenv.lib.optional withAllFeatures "--all-features";
+  cargoBuildFlags = stdenv.lib.optional withStableFeatures "--features=stable";
 
   preCheck = ''
     export HOME=$TMPDIR
@@ -43,6 +43,7 @@ rustPlatform.buildRustPackage rec {
     homepage = "https://www.nushell.sh/";
     license = licenses.mit;
     maintainers = with maintainers; [ filalex77 marsam ];
+    platforms = [ "x86_64-linux" "i686-linux" "x86_64-darwin" ];
   };
 
   passthru = {

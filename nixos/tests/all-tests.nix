@@ -21,6 +21,7 @@ let
     else {};
 in
 {
+  _3proxy = handleTest ./3proxy.nix {};
   acme = handleTestOn ["x86_64-linux"] ./acme.nix {};
   atd = handleTest ./atd.nix {};
   automysqlbackup = handleTest ./automysqlbackup.nix {};
@@ -131,6 +132,7 @@ in
   jellyfin = handleTest ./jellyfin.nix {};
   jenkins = handleTest ./jenkins.nix {};
   kafka = handleTest ./kafka.nix {};
+  keepalived = handleTest ./keepalived.nix {};
   kerberos = handleTest ./kerberos/default.nix {};
   kernel-latest = handleTest ./kernel-latest.nix {};
   kernel-lts = handleTest ./kernel-lts.nix {};
@@ -177,6 +179,7 @@ in
   mysql = handleTest ./mysql.nix {};
   mysqlBackup = handleTest ./mysql-backup.nix {};
   mysqlReplication = handleTest ./mysql-replication.nix {};
+  nagios = handleTest ./nagios.nix {};
   nat.firewall = handleTest ./nat.nix { withFirewall = true; };
   nat.firewall-conntrack = handleTest ./nat.nix { withFirewall = true; withConntrackHelpers = true; };
   nat.standalone = handleTest ./nat.nix { withFirewall = false; };
@@ -190,10 +193,12 @@ in
   networkingProxy = handleTest ./networking-proxy.nix {};
   nextcloud = handleTest ./nextcloud {};
   nexus = handleTest ./nexus.nix {};
-  nfs3 = handleTest ./nfs.nix { version = 3; };
-  nfs4 = handleTest ./nfs.nix { version = 4; };
+  # TODO: Test nfsv3 + Kerberos
+  nfs3 = handleTest ./nfs { version = 3; };
+  nfs4 = handleTest ./nfs { version = 4; };
   nghttpx = handleTest ./nghttpx.nix {};
   nginx = handleTest ./nginx.nix {};
+  nginx-etag = handleTest ./nginx-etag.nix {};
   nginx-sso = handleTest ./nginx-sso.nix {};
   nix-ssh-serve = handleTest ./nix-ssh-serve.nix {};
   nixos-generate-config = handleTest ./nixos-generate-config.nix {};
@@ -255,6 +260,7 @@ in
   smokeping = handleTest ./smokeping.nix {};
   snapper = handleTest ./snapper.nix {};
   solr = handleTest ./solr.nix {};
+  spacecookie = handleTest ./spacecookie.nix {};
   sonarr = handleTest ./sonarr.nix {};
   strongswan-swanctl = handleTest ./strongswan-swanctl.nix {};
   sudo = handleTest ./sudo.nix {};
@@ -276,6 +282,7 @@ in
   tor = handleTest ./tor.nix {};
   transmission = handleTest ./transmission.nix {};
   trac = handleTest ./trac.nix {};
+  trilium-server = handleTestOn ["x86_64-linux"] ./trilium-server.nix {};
   trezord = handleTest ./trezord.nix {};
   trickster = handleTest ./trickster.nix {};
   udisks2 = handleTest ./udisks2.nix {};
