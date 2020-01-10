@@ -5,7 +5,7 @@ on:
     - cron: '* * * * *'
 
 jobs:
-  19_09:
+  nixos-19_09:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -17,7 +17,7 @@ jobs:
         git remote add upstream https://github.com/NixOS/nixpkgs.git
         git fetch upstream
         git rebase upstream/nixos-19.09
-  unstable:
+  nixos-unstable:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
