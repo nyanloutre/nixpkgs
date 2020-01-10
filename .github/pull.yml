@@ -1,0 +1,8 @@
+version: "1"
+rules:
+  - base: nixos-unstable
+    upstream: NixOS:nixos-unstable
+    mergeMethod: rebase
+  - base: nixos-19.09
+    upstream: NixOS:nixos-19.09
+    mergeMethod: rebase
