@@ -2,14 +2,14 @@ version: "1"
 rules:
   - base: nixos-unstable
     upstream: NixOS:nixos-unstable
-    mergeMethod: rebase
+    mergeMethod: hardreset
     assignees:
       - nyanloutre
     reviewers:
       - nyanloutre
   - base: nixos-19.09
     upstream: NixOS:nixos-19.09
-    mergeMethod: rebase
+    mergeMethod: hardreset
     assignees:
       - nyanloutre
     reviewers:
