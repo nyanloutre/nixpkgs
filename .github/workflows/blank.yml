@@ -1,0 +1,31 @@
+name: Rebase on upstream
+
+on:
+  schedule:
+    - cron: '0 */1 * * *'
+
+jobs:
+  19.09:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: nixos-19.09
+        fetch-depth: 0
+    - name: Run a multi-line script
+      run: |
+        git remote add upstream https://github.com/NixOS/nixpkgs.git
+        git fetch upstream
+        git rebase upstream/nixos-19.09
+  unstable:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: nixos-unstable
+        fetch-depth: 0
+    - name: Run a multi-line script
+      run: |
+        git remote add upstream https://github.com/NixOS/nixpkgs.git
+        git fetch upstream
+        git rebase upstream/nixos-unstable
