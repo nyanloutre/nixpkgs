@@ -12,11 +12,15 @@ jobs:
       with:
         ref: nixos-19.09
         fetch-depth: 0
-    - name: Run a multi-line script
+    - name: Rebase and push
+      shell: bash
       run: |
+        git tag backups/nixos-19.09@$(date +%s)
+        git push --tags
         git remote add upstream https://github.com/NixOS/nixpkgs.git
         git fetch upstream
         git rebase upstream/nixos-19.09
+        git push --force
   nixos-unstable:
     runs-on: ubuntu-latest
     steps:
@@ -24,8 +28,12 @@ jobs:
       with:
         ref: nixos-unstable
         fetch-depth: 0
-    - name: Run a multi-line script
+    - name: Rebase and push
+      shell: bash
       run: |
+        git tag backups/nixos-unstable@$(date +%s)
+        git push --tags
         git remote add upstream https://github.com/NixOS/nixpkgs.git
         git fetch upstream
         git rebase upstream/nixos-unstable
+        git push --force
