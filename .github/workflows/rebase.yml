@@ -2,7 +2,7 @@ name: Rebase on upstream
 
 on:
   schedule:
-    - cron: '0 */1 * * *'
+    - cron: '* * * * *'
 
 jobs:
   19.09:
