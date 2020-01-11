@@ -2,7 +2,7 @@ name: Rebase nixpkgs on upstream channels
 
 on:
   schedule:
-    - cron: '* * * * *'
+    - cron: '0 4 * * *'
 
 jobs:
   nixos-rebase:
