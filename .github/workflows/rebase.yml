@@ -5,25 +5,26 @@ on:
     - cron: '* * * * *'
 
 jobs:
-  nixos-19_09:
+  nixos-rebase:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        channel: [nixos-unstable, nixos-19.09]
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout NixOS ${{ matrix.channel }} fork
+      uses: actions/checkout@v2
       with:
-        ref: nixos-19.09
+        ref: ${{ matrix.channel }}
         fetch-depth: 0
     - name: Rebase and push
       env:
-        NIXOS_CHANNEL: nixos-19.09
-      run: ./.github/workflows/rebase.sh
-  nixos-unstable:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        ref: nixos-unstable
-        fetch-depth: 0
-    - name: Rebase and push
-      env:
-        NIXOS_CHANNEL: nixos-unstable
-      run: ./.github/workflows/rebase.sh
+        NIXOS_CHANNEL: ${{ matrix.channel }}
+      run: |
+        git config user.name "${GITHUB_ACTOR}"
+        git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        git tag backups/${NIXOS_CHANNEL}@$(date +%s)
+        git push --tags
+        git remote add upstream https://github.com/NixOS/nixpkgs.git
+        git fetch upstream
+        git rebase upstream/${NIXOS_CHANNEL}
+        git push --force
