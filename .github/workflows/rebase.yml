@@ -1,0 +1,29 @@
+name: Rebase nixpkgs on upstream channels
+
+on:
+  schedule:
+    - cron: '* * * * *'
+
+jobs:
+  nixos-19_09:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: nixos-19.09
+        fetch-depth: 0
+    - name: Rebase and push
+      env:
+        NIXOS_CHANNEL: nixos-19.09
+      run: ./.github/workflows/rebase.sh
+  nixos-unstable:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: nixos-unstable
+        fetch-depth: 0
+    - name: Rebase and push
+      env:
+        NIXOS_CHANNEL: nixos-unstable
+      run: ./.github/workflows/rebase.sh
