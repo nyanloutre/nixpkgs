@@ -2,7 +2,7 @@ name: Rebase nixpkgs on upstream channels
 
 on:
   schedule:
-    - cron: '0 4 * * *'
+    - cron: '* * * * *'
 
 jobs:
   nixos-rebase:
@@ -17,9 +17,11 @@ jobs:
         ref: ${{ matrix.channel }}
         fetch-depth: 0
     - name: Rebase and push
+      id: git_rebase
       env:
         NIXOS_CHANNEL: ${{ matrix.channel }}
       run: |
+        echo "::set-output name=prev_head::$(git show -s --format=%H HEAD)"
         git config user.name "${GITHUB_ACTOR}"
         git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
         git tag backups/${NIXOS_CHANNEL}@$(date +%s)
@@ -27,4 +29,16 @@ jobs:
         git remote add upstream https://github.com/NixOS/nixpkgs.git
         git fetch upstream
         git rebase upstream/${NIXOS_CHANNEL}
+        echo "::set-output name=new_head::$(git show -s --format=%H HEAD)"
         git push --force
+    - name: send message
+      uses: s3krit/matrix-message-action@v0.0.1
+      with:
+        room_id: ${{ secrets.MATRIX_ROOM_ID }}
+        access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
+        message: "Nouvelle mise à jour de ${{ matrix.channel }} disponible"
+        formatted_message: |
+          <strong>Nouvelle mise à jour de ${{ matrix.channel }} disponible</strong>
+          <br />
+          <a href="https://github.com/nyanloutre/nixpkgs/compare/${{ steps.git_rebase.outputs.prev_head }}...${{ steps.git_rebase.outputs.new_head }}">Github diff</a>
+        server: "nyanlout.re"
