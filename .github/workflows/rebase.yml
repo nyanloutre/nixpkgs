@@ -2,7 +2,7 @@ name: Rebase nixpkgs on upstream channels
 
 on:
   schedule:
-    - cron: '* * * * *'
+    - cron: '0 4 * * *'
 
 jobs:
   nixos-rebase:
@@ -31,7 +31,7 @@ jobs:
         git rebase upstream/${NIXOS_CHANNEL}
         echo "::set-output name=new_head::$(git show -s --format=%H HEAD)"
         git push --force
-    - name: send message
+    - name: Send Matrix message
       uses: s3krit/matrix-message-action@v0.0.1
       with:
         room_id: ${{ secrets.MATRIX_ROOM_ID }}
