@@ -41,4 +41,4 @@ jobs:
           <strong>Nouvelle mise à jour de ${{ matrix.channel }} disponible</strong>
           <br />
           <a href="https://github.com/nyanloutre/nixpkgs/compare/${{ steps.git_rebase.outputs.prev_head }}...${{ steps.git_rebase.outputs.new_head }}">Github diff</a>
-        server: "nyanlout.re"
+        server: "matrix.nyanlout.re"
