@@ -10,7 +10,6 @@ let
     NODE_ENV = "production";
 
     DB_USER = cfg.database.user;
-    SMTP_LOGIN  = cfg.smtp.user;
 
     REDIS_HOST = cfg.redis.host;
     REDIS_PORT = toString(cfg.redis.port);
@@ -360,7 +359,6 @@ in {
         VAPID_PRIVATE_KEY=$(cat ${cfg.vapidPrivateKeyFile})
         VAPID_PUBLIC_KEY=$(cat ${cfg.vapidPublicKeyFile})
         DB_PASS="$(cat ${cfg.database.passwordFile})"
-        SMTP_PASSWORD="$(cat ${cfg.smtp.passwordFile})"
         EOF
       '';
       serviceConfig = {
