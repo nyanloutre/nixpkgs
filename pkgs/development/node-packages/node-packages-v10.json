@@ -110,6 +110,7 @@
 , "react-tools"
 , "reveal.js"
 , "s3http"
+, "screeps"
 , "semver"
 , "serve"
 , "serverless"
