@@ -158,6 +158,7 @@
 , "vue-language-server"
 , "web-ext"
 , "webpack"
+, {"webpack": "3.x"}
 , "webpack-cli"
 , "webpack-dev-server"
 , "copy-webpack-plugin"

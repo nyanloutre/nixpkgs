@@ -92,9 +92,13 @@ nodePackages // {
     '';
   };
 
-  screeps = nodePackages.screeps.override (oldAttrs: {
-    buildInputs = oldAttrs.buildInputs ++ [ nodePackages.webpack ];
-  });
+  screeps = nodePackages.screeps.override {
+    buildInputs = [ nodePackages."webpack-3.x" ];
+    preRebuild = ''
+      pwd
+      echo "$dontNpmInstall"
+    '';
+  };
 
   ssb-server = nodePackages.ssb-server.override {
     buildInputs = [ pkgs.automake pkgs.autoconf nodePackages.node-gyp-build ];
