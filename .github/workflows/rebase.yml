@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        channel: [nixos-unstable, nixos-19.09]
+        channel: [nixos-unstable, nixos-20.03]
     steps:
     - name: Checkout NixOS ${{ matrix.channel }} fork
       uses: actions/checkout@v2
