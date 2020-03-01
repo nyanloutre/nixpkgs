@@ -15321,6 +15321,8 @@ in
     };
   }).pkgs; toPythonApplication mailman-web;
 
+  mastodon = callPackage ../servers/mastodon { };
+
   mattermost = callPackage ../servers/mattermost { };
   matterircd = callPackage ../servers/mattermost/matterircd.nix { };
   matterbridge = callPackage ../servers/matterbridge { };
