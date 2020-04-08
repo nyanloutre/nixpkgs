@@ -326,6 +326,14 @@ in {
           Do automatic database migrations.
         '';
       };
+
+      mediaPruneTimer = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = ''
+          Regular old media purge
+        '';
+      };
     };
   };
 
@@ -477,6 +485,27 @@ in {
         StateDirectory = "mastodon";
       };
       path = with pkgs; [ file imagemagick ffmpeg ];
+    };
+
+    systemd.services.mastodon-media-prune = lib.mkIf cfg.mediaPruneTimer {
+      description = "Mastodon media purge";
+      environment = env;
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "${cfg.package}/bin/tootctl media remove";
+        User = cfg.user;
+        Group = cfg.group;
+        EnvironmentFile = "/var/lib/mastodon/.secrets_env";
+        PrivateTmp = true;
+      };
+    };
+
+    systemd.timers.mastodon-media-prune = lib.mkIf cfg.mediaPruneTimer {
+      wantedBy = [ "multi-user.target" ];
+      description = "Mastodon media purge";
+      timerConfig = {
+        OnCalendar = "daily";
+      };
     };
 
     services.nginx = lib.mkIf cfg.configureNginx {
