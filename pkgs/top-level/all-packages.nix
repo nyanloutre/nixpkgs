@@ -12513,6 +12513,7 @@ in
   libviper = callPackage ../development/libraries/libviper { };
 
   libvpx = callPackage ../development/libraries/libvpx { };
+  libvpx_1_8 = callPackage ../development/libraries/libvpx/1_8.nix { };
 
   libvterm = callPackage ../development/libraries/libvterm { };
   libvterm-neovim = callPackage ../development/libraries/libvterm-neovim { };
@@ -12827,14 +12828,14 @@ in
   };
 
   # newer nspr version for newer firefox stable releases
-  nspr_4_24 = callPackage ../development/libraries/nspr/nspr_4_24.nix {
+  nspr_4_25 = callPackage ../development/libraries/nspr/nspr_4_25.nix {
     inherit (darwin.apple_sdk.frameworks) CoreServices;
   };
 
   nss = lowPrio (callPackage ../development/libraries/nss { });
 
   # newer NSS version for newer firefox stable releases
-  nss_3_49_2 = callPackage ../development/libraries/nss/3_49_2.nix { };
+  nss_3_51 = callPackage ../development/libraries/nss/3_51.nix { };
 
   nssTools = nss.tools;
 
@@ -13708,7 +13709,7 @@ in
   stxxl = callPackage ../development/libraries/stxxl { parallel = true; };
 
   sqlite = lowPrio (callPackage ../development/libraries/sqlite { });
-  sqlite_3_30_1 = callPackage ../development/libraries/sqlite/3-30-1.nix { };
+  sqlite_3_31_1 = callPackage ../development/libraries/sqlite/3-31-1.nix { };
 
   sqlite-analyzer = lowPrio (callPackage ../development/libraries/sqlite/analyzer.nix { });
 
@@ -15257,6 +15258,8 @@ in
 
   syncserver = callPackage ../servers/syncserver { };
 
+  tailscale = callPackage ../servers/tailscale { };
+
   thanos = callPackage ../servers/monitoring/thanos { };
 
   inherit (callPackages ../servers/http/tomcat { })
@@ -15765,7 +15768,7 @@ in
         # when adding a new linux version
         kernelPatches.cpu-cgroup-v2."4.11"
         kernelPatches.modinst_arg_list_too_long
-        kernelPatches.export_kernel_fpu_functions
+        kernelPatches.export_kernel_fpu_functions."4.14"
       ];
   };
 
@@ -15773,13 +15776,16 @@ in
     kernelPatches =
       [ kernelPatches.bridge_stp_helper
         kernelPatches.modinst_arg_list_too_long
-        kernelPatches.export_kernel_fpu_functions
+        kernelPatches.export_kernel_fpu_functions."4.14"
       ];
   };
 
   # Update this when adding the newest kernel major version!
   linux_latest = callPackage ../os-specific/linux/kernel/linux-5.4.nix {
-    kernelPatches = [ kernelPatches.bridge_stp_helper ];
+    kernelPatches = [
+      kernelPatches.bridge_stp_helper
+      kernelPatches.export_kernel_fpu_functions."5.3"
+    ];
   };
 
   linux_testing = callPackage ../os-specific/linux/kernel/linux-testing.nix {
@@ -15955,7 +15961,7 @@ in
       virtualbox = pkgs.virtualboxHardened;
     };
 
-    wireguard = callPackage ../os-specific/linux/wireguard { };
+    wireguard = if lib.versionOlder kernel.version "5.6" then callPackage ../os-specific/linux/wireguard { } else null;
 
     x86_energy_perf_policy = callPackage ../os-specific/linux/x86_energy_perf_policy { };
 
@@ -18106,9 +18112,7 @@ in
 
   fehlstart = callPackage ../applications/misc/fehlstart { };
 
-  fetchmail = callPackage ../applications/misc/fetchmail {
-    openssl = openssl_1_0_2;
-  };
+  fetchmail = callPackage ../applications/misc/fetchmail { };
 
   fff = callPackage ../applications/misc/fff { };
 
@@ -20074,6 +20078,8 @@ in
 
   protonvpn-cli = callPackage ../applications/networking/protonvpn-cli { };
 
+  protonvpn-cli-ng = callPackage ../applications/networking/protonvpn-cli-ng { };
+
   ps2client = callPackage ../applications/networking/ps2client { };
 
   psi = callPackage ../applications/networking/instant-messengers/psi { };
@@ -21654,7 +21660,7 @@ in
     inherit (darwin.apple_sdk.frameworks) CoreServices;
   };
 
-  zoom-us = libsForQt59.callPackage ../applications/networking/instant-messengers/zoom-us { };
+  zoom-us = libsForQt5.callPackage ../applications/networking/instant-messengers/zoom-us { };
 
   zotero = callPackage ../applications/office/zotero { };
 
