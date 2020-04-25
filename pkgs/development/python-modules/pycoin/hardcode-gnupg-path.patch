@@ -1,0 +1,13 @@
+diff --git a/pycoin/cmds/tx.py b/pycoin/cmds/tx.py
+index fe9f09f..0c321b2 100755
+--- a/pycoin/cmds/tx.py
++++ b/pycoin/cmds/tx.py
+@@ -230,7 +230,7 @@ def create_parser():
+ 
+ 
+ def replace_with_gpg_pipe(args, f):
+-    gpg_args = ["gpg", "-d"]
++    gpg_args = ["@gnupg@/bin/gpg", "-d"]
+     if args.gpg_argument:
+         gpg_args.extend(args.gpg_argument.split())
+     gpg_args.append(f.name)
