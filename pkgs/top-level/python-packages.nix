@@ -1044,6 +1044,8 @@ in {
     inherit (pkgs) pkgconfig;
   });
 
+  pycoin = callPackage ../development/python-modules/pycoin { };
+
   pycrc = callPackage ../development/python-modules/pycrc { };
 
   pycrypto = callPackage ../development/python-modules/pycrypto { };
