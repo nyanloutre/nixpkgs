@@ -705,6 +705,7 @@
   ./services/networking/syncthing.nix
   ./services/networking/syncthing-relay.nix
   ./services/networking/syncplay.nix
+  ./services/networking/tailscale.nix
   ./services/networking/tcpcrypt.nix
   ./services/networking/teamspeak3.nix
   ./services/networking/tedicross.nix
@@ -728,6 +729,7 @@
   ./services/networking/xinetd.nix
   ./services/networking/xl2tpd.nix
   ./services/networking/xrdp.nix
+  ./services/networking/yggdrasil.nix
   ./services/networking/zerobin.nix
   ./services/networking/zeronet.nix
   ./services/networking/zerotierone.nix
