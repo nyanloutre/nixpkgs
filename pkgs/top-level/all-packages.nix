@@ -3792,6 +3792,8 @@ in
 
   go-mtpfs = callPackage ../tools/filesystems/go-mtpfs { };
 
+  gonic = callPackage ../servers/misc/gonic { };
+
   go-sct = callPackage ../tools/X11/go-sct { };
 
   # rename to upower-notify?
@@ -22474,6 +22476,8 @@ in
   webtorrent_desktop = callPackage ../applications/video/webtorrent_desktop {};
 
   wrapWeechat = callPackage ../applications/networking/irc/weechat/wrapper.nix { };
+
+  weboob-qt = callPackage ../applications/networking/weboob-qt { };
 
   weechat-unwrapped = callPackage ../applications/networking/irc/weechat {
     inherit (darwin) libobjc;
