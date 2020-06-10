@@ -1739,6 +1739,8 @@ in {
 
   affine = callPackage ../development/python-modules/affine { };
 
+  aigpy = callPackage ../development/python-modules/aigpy { };
+
   aioconsole = callPackage ../development/python-modules/aioconsole { };
 
   aiodns = callPackage ../development/python-modules/aiodns { };
@@ -6131,6 +6133,8 @@ in {
   testresources = callPackage ../development/python-modules/testresources { };
 
   testtools = callPackage ../development/python-modules/testtools { };
+
+  tidal-dl = callPackage ../development/python-modules/tidal-dl { };
 
   traitlets = callPackage ../development/python-modules/traitlets { };
 
