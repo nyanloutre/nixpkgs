@@ -3072,6 +3072,8 @@ in
 
   disper = callPackage ../tools/misc/disper { };
 
+  diyhue = callPackage ../servers/diyhue { };
+
   dleyna-connector-dbus = callPackage ../development/libraries/dleyna-connector-dbus { };
 
   dleyna-core = callPackage ../development/libraries/dleyna-core { };
