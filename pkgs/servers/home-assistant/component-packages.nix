@@ -717,7 +717,7 @@
     "spotcrime" = ps: with ps; [  ];
     "spotify" = ps: with ps; [ aiohttp-cors ];
     "sql" = ps: with ps; [ sqlalchemy ];
-    "squeezebox" = ps: with ps; [  ];
+    "squeezebox" = ps: with ps; [ pysqueezebox ];
     "ssdp" = ps: with ps; [ defusedxml netdisco ];
     "starline" = ps: with ps; [  ];
     "starlingbank" = ps: with ps; [  ];
