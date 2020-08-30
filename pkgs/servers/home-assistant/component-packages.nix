@@ -890,7 +890,7 @@
     "yamaha_musiccast" = ps: with ps; [  ];
     "yandex_transport" = ps: with ps; [  ];
     "yandextts" = ps: with ps; [  ];
-    "yeelight" = ps: with ps; [  ];
+    "yeelight" = ps: with ps; [ aiohttp-cors netdisco yeelight zeroconf ];
     "yeelightsunflower" = ps: with ps; [  ];
     "yessssms" = ps: with ps; [  ];
     "yi" = ps: with ps; [ aioftp ha-ffmpeg ];
