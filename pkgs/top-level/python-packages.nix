@@ -3589,6 +3589,8 @@ in {
 
   lpod = callPackage ../development/python-modules/lpod { };
 
+  lru-dict = callPackage ../development/python-modules/lru-dict { };
+
   lsi = callPackage ../development/python-modules/lsi { };
 
   ludios_wpull = callPackage ../development/python-modules/ludios_wpull { };
