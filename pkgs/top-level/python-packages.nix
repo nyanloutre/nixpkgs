@@ -6614,6 +6614,8 @@ in {
 
   setuptools-lint = callPackage ../development/python-modules/setuptools-lint { };
 
+  setuptools-markdown = callPackage ../development/python-modules/setuptools-markdown { };
+
   setuptools-rust = callPackage ../development/python-modules/setuptools-rust { };
 
   setuptools_scm = callPackage ../development/python-modules/setuptools_scm { };
