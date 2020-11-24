@@ -3006,6 +3006,8 @@ in {
 
   ipfsapi = callPackage ../development/python-modules/ipfsapi { };
 
+  ipfshttpclient = callPackage ../development/python-modules/ipfshttpclient { };
+
   iptools = callPackage ../development/python-modules/iptools { };
 
   ipy = callPackage ../development/python-modules/IPy { };
