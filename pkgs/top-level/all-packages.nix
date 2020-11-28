@@ -24993,6 +24993,8 @@ in
 
   exodus = callPackage ../applications/blockchains/exodus { };
 
+  geth = callPackage ../applications/blockchains/geth.nix { };
+
   go-ethereum = callPackage ../applications/blockchains/go-ethereum.nix {
     inherit (darwin) libobjc;
     inherit (darwin.apple_sdk.frameworks) IOKit;
