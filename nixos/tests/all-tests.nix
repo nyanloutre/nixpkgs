@@ -233,6 +233,7 @@ in
   ndppd = handleTest ./ndppd.nix {};
   neo4j = handleTest ./neo4j.nix {};
   specialisation = handleTest ./specialisation.nix {};
+  navidrome = handleTest ./navidrome.nix {};
   netdata = handleTest ./netdata.nix {};
   networking.networkd = handleTest ./networking.nix { networkd = true; };
   networking.scripted = handleTest ./networking.nix { networkd = false; };
