@@ -169,6 +169,35 @@ in
         ExecStart = ''${cfg.package}/bin/influxd -config "${configFile}"'';
         User = cfg.user;
         Group = cfg.group;
+
+        BindPaths = cfg.dataDir;
+        RuntimeDirectory = "influxdb";
+        RootDirectory = "/run/influxdb";
+        BindReadOnlyPaths = [ builtins.storeDir ];
+        CapabilityBoundingSet = "";
+        RestrictAddressFamilies = [ "AF_UNIX" "AF_INET" "AF_INET6" ];
+        RestrictNamespaces = true;
+        NoNewPrivileges = true;
+        PrivateDevices = true;
+        PrivateMounts = true;
+        PrivateTmp = true;
+        PrivateUsers = true;
+        ProtectClock = true;
+        ProtectControlGroups = true;
+        ProtectHome = true;
+        ProtectKernelLogs = true;
+        ProtectKernelModules = true;
+        ProtectKernelTunables = true;
+        ProtectSystem = "strict";
+        RestrictSUIDSGID = true;
+        SystemCallArchitectures = "native";
+        SystemCallFilter = [ "@system-service" "~@privileged" "~@resources" ];
+        RestrictRealtime = true;
+        LockPersonality = true;
+        MemoryDenyWriteExecute = true;
+        RemoveIPC = true;
+        UMask = "0066";
+        ProtectHostname = true;
       };
       postStart =
         let
