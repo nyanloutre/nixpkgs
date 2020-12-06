@@ -6,9 +6,8 @@ let
   baseGrafanaConf = {
     services.grafana = {
       enable = true;
-      addr = "localhost";
+      addr = "127.0.0.1";
       analytics.reporting.enable = false;
-      domain = "localhost";
       security = {
         adminUser = "testadmin";
         adminPassword = "snakeoilpwd";
