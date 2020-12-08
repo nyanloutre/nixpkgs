@@ -1848,6 +1848,8 @@ in {
 
   ds4drv = callPackage ../development/python-modules/ds4drv { inherit (pkgs) fetchFromGitHub bluez; };
 
+  dtlssocket = callPackage ../development/python-modules/dtlssocket { };
+
   dtopt = callPackage ../development/python-modules/dtopt { };
 
   duckdb = callPackage ../development/python-modules/duckdb { duckdb = pkgs.duckdb; };
