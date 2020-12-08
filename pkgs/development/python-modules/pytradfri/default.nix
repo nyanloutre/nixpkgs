@@ -1,4 +1,4 @@
-{ lib, buildPythonPackage, fetchPypi, aiocoap }:
+{ lib, buildPythonPackage, fetchPypi, aiocoap, dtlssocket }:
 
 buildPythonPackage rec {
   pname = "pytradfri";
@@ -9,7 +9,7 @@ buildPythonPackage rec {
     sha256 = "bef941f479ef1151bf266d158aa6978c709d03943ccd35ecc4f2c006a47c0824";
   };
 
-  propagatedBuildInputs = [ aiocoap ];
+  propagatedBuildInputs = [ aiocoap dtlssocket ];
 
   pythonImportsCheck = [ "pytradfri" ];
 
