@@ -1,4 +1,4 @@
-{ lib, buildPythonPackage, fetchPypi }:
+{ lib, buildPythonPackage, fetchPypi, aiocoap }:
 
 buildPythonPackage rec {
   pname = "pytradfri";
@@ -9,11 +9,11 @@ buildPythonPackage rec {
     sha256 = "bef941f479ef1151bf266d158aa6978c709d03943ccd35ecc4f2c006a47c0824";
   };
 
-  propagatedBuildInputs = [ ];
+  propagatedBuildInputs = [ aiocoap ];
 
   pythonImportsCheck = [ "pytradfri" ];
 
-  doCheck = false;
+#  doCheck = false;
 
   meta = with lib; {
     description = "IKEA Trådfri/Tradfri API. Control and observe your lights from Python";
