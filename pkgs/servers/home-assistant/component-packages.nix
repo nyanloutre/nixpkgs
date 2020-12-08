@@ -851,7 +851,7 @@
     "tplink_lte" = ps: with ps; [ ]; # missing inputs: tp-connected
     "traccar" = ps: with ps; [ aiohttp-cors stringcase ]; # missing inputs: pytraccar
     "trackr" = ps: with ps; [ ]; # missing inputs: pytrackr
-    "tradfri" = ps: with ps; [ ]; # missing inputs: pytradfri[async]
+    "tradfri" = ps: with ps; [ pytradfri ];
     "trafikverket_train" = ps: with ps; [ ]; # missing inputs: pytrafikverket
     "trafikverket_weatherstation" = ps: with ps; [ ]; # missing inputs: pytrafikverket
     "transmission" = ps: with ps; [ transmissionrpc ];
