@@ -6071,6 +6071,8 @@ in {
 
   pytrends = callPackage ../development/python-modules/pytrends { };
 
+  pytradfri = callPackage ../development/python-modules/pytradfri { };
+
   pytricia = callPackage ../development/python-modules/pytricia { };
 
   pytun = callPackage ../development/python-modules/pytun { };
