@@ -7,7 +7,7 @@
 , stdenv
 , dotnetCorePackages
 , dotnetPackages
-, ffmpeg
+, ffmpeg-jellyfin
 , fontconfig
 , freetype
 , jellyfin-web
@@ -18,7 +18,7 @@ let
   dotnet-sdk = dotnetCorePackages.sdk_5_0;
   dotnet-aspnetcore = dotnetCorePackages.aspnetcore_5_0;
   runtimeDeps = [
-    ffmpeg
+    ffmpeg-jellyfin
     fontconfig
     freetype
   ];
@@ -103,7 +103,7 @@ stdenv.mkDerivation rec {
     makeWrapper ${dotnet-aspnetcore}/bin/dotnet $out/bin/jellyfin \
       --suffix LD_LIBRARY_PATH : "${lib.makeLibraryPath runtimeDeps}" \
       --add-flags "$out/opt/jellyfin/jellyfin.dll" \
-      --add-flags "--ffmpeg ${ffmpeg}/bin/ffmpeg" \
+      --add-flags "--ffmpeg ${ffmpeg-jellyfin}/bin/ffmpeg" \
       --add-flags "--webdir ${jellyfin-web}/share/jellyfin-web"
 
     runHook postInstall
