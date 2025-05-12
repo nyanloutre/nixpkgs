@@ -21,7 +21,7 @@
   applyPatches,
 }:
 let
-  version = "5.21.1.9799";
+  version = "5.22.4.9896";
   # The dotnet8 compatibility patches also change `yarn.lock`, so we must pass
   # the already patched lockfile to `fetchYarnDeps`.
   src = applyPatches {
@@ -29,26 +29,26 @@ let
       owner = "Radarr";
       repo = "Radarr";
       tag = "v${version}";
-      hash = "";
+      hash = "sha256-0JueDbkGokQLXzdNozepUoqBUCtHPdeObXh7wwstuXw=";
     };
     patches =
       [
         ./nuget-config.patch
       ]
       ++ lib.optionals (lib.versionOlder version "6.0") [
-        # See https://github.com/Radarr/Radarr/pull/10258
+        # See https://github.com/Radarr/Radarr/pull/11064
         # Unfortunately, the .NET 8 upgrade will be merged into the v6 branch,
         # and it may take some time for that to become stable.
         # However, the patches cleanly apply to v5 as well.
         (fetchpatch {
           name = "dotnet8-compatibility";
           url = "https://github.com/Radarr/Radarr/commit/2799a475eee8b5ee7b2465f4bc41fd343456c9d8.patch";
-          hash = "";
+          hash = "sha256-voAKxDoKyWtkdwi5i4TlsQW8t2XzloRPF1PqcKOxgpw=";
         })
         (fetchpatch {
           name = "dotnet8-darwin-compatibility";
           url = "https://github.com/Radarr/Radarr/commit/539f318884106c6faccfe1701fe06865d293cf95.patch";
-          hash = "";
+          hash = "sha256-SAMUHqlSj8FPq20wY8NWbRytVZXTPtMXMfM3CoM8kSA=";
         })
       ];
   };
@@ -68,7 +68,7 @@ buildDotnetModule {
 
   yarnOfflineCache = fetchYarnDeps {
     yarnLock = "${src}/yarn.lock";
-    hash = "sha256-Cm4N2fIDABMowY5N0rt6qwVu/k22f5gO1+4itloxC+o=";
+    hash = "sha256-lxOmheBRqVI39I6fOoXWpGhb1fseHC8Mo/KhbRRYHI8=";
   };
 
   ffprobe = lib.optionalDrvAttr withFFmpeg (lib.getExe' ffmpeg "ffprobe");
